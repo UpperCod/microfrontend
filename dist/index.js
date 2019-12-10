@@ -1055,7 +1055,7 @@ function preact(source, options) {
   });
 }
 
-let Component = preact(() => import('./chunks/2b7af1af.js'));
+let Component = preact(() => import('./chunks/aa18fb5d.js'));
 
 function MyApp() {
   return createElement("host", null, "Atomico containers", createElement(Component, null));

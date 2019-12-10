@@ -21,8 +21,8 @@ function redirect() {
 export default function Component() {
   return (
     <h1>
-      preact app
-      <Button onclick={redirect}>root</Button>
+      preact app, Shadow Dom style does not affect preact content
+      <Button onclick={redirect}>css-in-js inside the shadowDom</Button>
     </h1>
   );
 }
