@@ -1,6 +1,6 @@
 # @atomico/microfrontend
 
-I have analyzed the capacity of atomico to orchestrate microforntend strategies, for this atomico, it should cover the following aspects:
+I have analyzed the capacity of atomico to orchestrate microfrontend strategies, for this atomico, it should cover the following aspects:
 
 ## avoid excessive configuration
 
