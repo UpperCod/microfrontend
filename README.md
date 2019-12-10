@@ -20,7 +20,7 @@ There are persistent frontend strategies with libraries like React, an example o
 
 ## Dinamic import
 
-This strategy is ideal for the use of microforders, since it allows to effectively isolate an application and all its dependencies
+This strategy is ideal for the use of microfrontend, since it allows to effectively isolate an application and all its dependencies
 
 ## Example of api proposed by atomico
 
