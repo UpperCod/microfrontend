@@ -16,17 +16,17 @@ export default function ReactApp() {
 
 ## isolated documents
 
-There are persistent frontend strategies with libraries such as React, an example of which is the use of css-in-js libraries, which define styles globally, this clashes with the shadow-dom and generates risks of css rewriting by hierarchy, for avoid that the most effective solution is the use of iframe to assimilate the execution of the application.
+There are persistent frontend strategies with libraries like React, an example of these is the use of css-in-js libraries, which define styles globally that are blocked with the use of shadow-dom. the most effective solution is the use of iframe to allow the use of global styles in a scope
 
 ## Dinamic import
 
-This strategy is ideal for the use of microforntend, since it allows to effectively insulate an application and all its dependencies in an effective way, this protects the integrity of the execution of global code and allows to apply a small import hack to ram the list in an iframe , the css-in-js code would work without problems.
+This strategy is ideal for the use of microforders, since it allows to effectively isolate an application and all its dependencies
 
 ## Example of api proposed by atomico
 
 ```js
 import { h, customElement } from "atomico";
-import { preact, react, vue } from "@atomico/microfront";
+import { preact, react, vue } from "@atomico/microfrontend";
 
 let ComponentPreact = preact(() => import("./app/preact/example"));
 let ComponentReact = react(() => import("./app/react/example"));
