@@ -1,6 +1,6 @@
 # @atomico/microfrontend
 
-I have analyzed the capacity of atomico to orchestrate microforntend strategies, for this atomic, it should cover the following aspects:
+I have analyzed the capacity of atomico to orchestrate microforntend strategies, for this atomico, it should cover the following aspects:
 
 ## avoid excessive configuration
 
@@ -50,6 +50,10 @@ customElement("my-app", MyApp);
 
 where :
 
-* `@atomico/microfront` : will allow the use of renders that work in an iframe in a secure and isolated way
-* `ComponentPreact` : functional component that allows you to reflect the props to the component to be imported by the render from the iframe
-* `ComponentPreact[root]` : allows to define the root of the route to be observed by iframe, with the aim of the router synchronizing effectively
+- `@atomico/microfront` : will allow the use of renders that work in an iframe in a secure and isolated way
+- `ComponentPreact` : functional component that allows you to reflect the props to the component to be imported by the render from the iframe
+- `ComponentPreact[root]` : allows to define the root of the route to be observed by iframe, with the aim of the router synchronizing effectively
+
+## Live Example
+
+the [Example](https://uppercod.github.io/microfrontend/dist/) teaches how preact exists inside the shadow Dom using css-in-js thanks to encapsulation with iframe.
