@@ -1,10 +1,6 @@
 import { h, customElement, useEffect, useHost } from "atomico";
 
-function eventRedirect(window) {
-  window.dispatchEvent(new PopStateEvent("popstate"));
-}
-
-function Microfront({ options, props }) {
+function SandBox({ options, props }) {
   let ref = useHost();
 
   useEffect(() => {
@@ -12,6 +8,9 @@ function Microfront({ options, props }) {
 
     if (!ref.load) {
       let script = document.createElement("script");
+      let style = document.createElement("style");
+
+      style.textContent = `html,body{margin:0px;width:100%;height:100%;overflow:auto}`;
       /**
        * HACK, the use of code split, improves the micro frontend experience,
        * since it allows to assimilate the execution of the application in a
@@ -19,21 +18,16 @@ function Microfront({ options, props }) {
        */
       script.textContent = `window.$ =(${options.source})().then(md=>md.default)`;
 
-      contentDocument.body.appendChild(script);
+      contentDocument.head.appendChild(script);
+      contentDocument.head.appendChild(style);
 
-      // let { history: sandboxHistory } = contentWindow;
-      // let { root } = props;
-      // sandboxHistory.pushState = function(state, title, path) {
-      //   /**
-      //    * @todo find a way to synchronize the status of the iframe route
-      //    **/
-      //   pushState.call(this, state, title, "/sandbox" + path);
-      //   history.pushState(state, title, path);
-      //   eventRedirect(contentWindow);
-      // };
+      Object.defineProperty(contentWindow, "history", {
+        value: history
+      });
 
       ref.load = true;
     }
+
     contentWindow.$.then(component => {
       options.render(contentDocument.body, component, props);
     });
@@ -46,18 +40,20 @@ function Microfront({ options, props }) {
 
   return (
     <host
-      sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+      width="100%"
+      height="100%"
+      sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
       frameBorder="0"
     ></host>
   );
 }
 
-Microfront.props = {
+SandBox.props = {
   options: Object,
   props: Object
 };
 
-export default customElement("atomico-microfront", Microfront, {
+export default customElement("a-microfrontend-sandbox", SandBox, {
   base: HTMLIFrameElement,
   extends: "iframe"
 });

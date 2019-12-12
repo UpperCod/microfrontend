@@ -1,59 +1,30 @@
 # @atomico/microfrontend
 
-I have analyzed the capacity of atomico to orchestrate microfrontend strategies, for this atomico, it should cover the following aspects:
-
-## avoid excessive configuration
-
-Each development environment is unique among libraries, so it is recommended to maintain the format and only use an isolated distribution application, eg:
+## Orchestrator example
 
 ```jsx
-export default function ReactApp() {
-  return <Fragment>...mega app!</Fragment>;
-}
-```
-
-> Note that the use of ReactDom.render does not exist within the code to be reused, only the use of the component is sought
-
-## isolated documents
-
-There are persistent frontend strategies with libraries like React, an example of these is the use of css-in-js libraries, which define styles globally that are blocked with the use of shadow-dom. the most effective solution is the use of iframe to allow the use of global styles in a scope
-
-## Dinamic import
-
-This strategy is ideal for the use of microfrontend, since it allows to effectively isolate an application and all its dependencies
-
-## Example of api proposed by atomico
-
-```js
 import { h, customElement } from "atomico";
-import { preact, react, vue } from "@atomico/microfrontend";
+import { Container, Sandbox, preact, vue } from "@atomico/microfrontend";
 
-let ComponentPreact = preact(() => import("./app/preact/example"));
-let ComponentReact = react(() => import("./app/react/example"));
-let ComponentVue = vue(() => import("./app/vue/example"));
+// Create a container to use preact
+let App1 = Container(() => import("./team-1/app"), preact);
+// Create a sandbox to use vue
+let App2 = Sandbox(() => import("./team-2/app"), vue);
 
 function MyApp() {
-  function handler(messageFrom) {
-    console.log(messageFrom);
+  function handler(message) {
+    console.log(message); // from preact . . . from vue
   }
   return (
-    <host shadowDom>
-      <ComponentPreact anyProp={handler} root="/preact" />
-      <ComponentReact anyProp={handler} root="/preact" />
-      <ComponentVue anyProp={handler} root="/vue" />
+    <host>
+      microfrontend apps!
+      <App1 anyHandler={handler} />
+      <App2 anyHandler={handler} />
     </host>
   );
 }
-
-customElement("my-app", MyApp);
 ```
 
-where :
+## sandbox rules
 
-- `@atomico/microfront` : will allow the use of renders that work in an iframe in a secure and isolated way
-- `ComponentPreact` : functional component that allows you to reflect the props to the component to be imported by the render from the iframe
-- `ComponentPreact[root]` : allows to define the root of the route to be observed by iframe, with the aim of the router synchronizing effectively
-
-## Live Example
-
-the [Example](https://uppercod.github.io/microfrontend/dist/) teaches how preact exists inside the shadow Dom using css-in-js thanks to encapsulation with iframe.
+The sandbox is a separate document that assimilates the execution of all the code associated with the sandbox, this allows to keep styles and js global without conflict, but does not allow a manipulation on `window.location`, to achieve this you must pass`location` as A prop for the sandbox.

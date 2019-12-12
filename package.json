@@ -2,27 +2,28 @@
   "name": "@atomico/microfrontend",
   "version": "0.0.0",
   "description": "",
-  "main": "core.js",
-  "module": "core.js",
-  "source": "src/core/core.js",
+  "main": "microfrontend.js",
+  "module": "microfrontend.js",
+  "source": "src/microfrontend.js",
   "scripts": {
-    "dev": "bundle index.html --watch --server",
-    "build": "bundle index.html"
+    "build": "bundle src/microfrontend.js ./ -e"
   },
+  "publishConfig": {
+		"access": "public"
+	},
   "author": "UpperCod",
   "license": "ISC",
   "dependencies": {
-    "atomico": "^0.15.3",
-    "goober": "^1.5.1",
-    "preact": "^10.0.5"
+    "atomico": "^0.15.3"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
     "bundle-cli": "^0.6.3"
   },
-  "babel": {
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
-    ]
+  "peerDependencies": {
+    "vue" : "*",
+    "react" : "*",
+    "preact": "*",
+    "react-dom" : "*"
+
   }
 }
