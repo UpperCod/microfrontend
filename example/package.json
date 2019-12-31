@@ -1,0 +1,11 @@
+{
+    "name": "app-microfrontend",
+    "version": "1.0.0",
+    "scripts": {
+        "start" : "lerna run --parallel start",
+        "bootstrap": "lerna bootstrap"
+    },
+    "devDependencies": {
+        "lerna": "^3.19.0"
+    }
+}

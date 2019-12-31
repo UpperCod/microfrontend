@@ -1,0 +1,15 @@
+{
+  "name": "microapp-react",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "bundle src/header.js dist --jsx react --server --port 8010 --watch"
+  },
+  "dependencies": {
+    "goober":"^1.6.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "bundle-cli": "^0.8.3"
+  }
+}
