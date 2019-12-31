@@ -1,29 +1,30 @@
 {
   "name": "@atomico/microfrontend",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "description": "",
-  "main": "microfrontend.js",
-  "module": "microfrontend.js",
-  "source": "src/microfrontend.js",
+  "main": "create-container.js",
+  "module": "create-container.js",
+  "source": "src/create-container.js",
   "scripts": {
-    "build": "bundle src/microfrontend.js ./ -e"
+    "build": "bundle \"src\/(create-container|render-*).js\" ./ -e",
+    "build:example": "bundle example index.html",
+    "prepare" : "npm run build"
   },
   "publishConfig": {
-		"access": "public"
-	},
+    "access": "public"
+  },
   "author": "UpperCod",
   "license": "ISC",
   "dependencies": {
-    "atomico": "^0.15.3"
+    "atomico": "^0.17.0"
   },
   "devDependencies": {
-    "bundle-cli": "^0.6.3"
+    "bundle-cli": "^0.8.3"
   },
   "peerDependencies": {
-    "vue" : "*",
-    "react" : "*",
+    "vue": "*",
+    "react": "*",
     "preact": "*",
-    "react-dom" : "*"
-
+    "react-dom": "*"
   }
 }
