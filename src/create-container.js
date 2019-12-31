@@ -1,7 +1,7 @@
 import { h } from "atomico";
 import ComponentContainer from "./component-container";
 
-export function Container(source, render) {
+export default function createContainer(source, render) {
   return props => (
     <ComponentContainer
       options={{ source, render }}
